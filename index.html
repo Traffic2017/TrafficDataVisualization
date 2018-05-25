@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="lib/jquery.min.js"></script>
+    <script src="node_modules/coordtransform/index.js"></script>
+    <title></title>
+
+    <style type="text/css">
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        #map {
+            width: 100%;
+            height: 500px;
+        }
+        #map2 {
+            width: 100%;
+            height: 500px;
+        }
+        .MAP{
+            float:left;
+        }
+    </style>
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body id="layouts-horizontal" class="loaded">
+<div id="loader-wrapper">
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+</div>
+<script src="src/const.js"></script>
+<header class="no-padding">
+    <div class="navbar-fixed">
+        <nav class="navfeature">
+            <div class="container nav-wrapper">
+                <a href="https://www.android-kiosk.com" class="waves-effect waves-light">
+                    <span class="hide-on-small-only"><img src="img/trafficLogo.png" width="60" id="appicon" style="vertical-align: middle;margin-bottom:10px;margin-right:10px;"></span>
+                    <span id="header-large" style="font-weight:300;font-size:1.3rem;">Traffic Data Visualization</span>
+                </a>
+
+                <ul id="nav-mobile" class="hide-on-med-and-down right">
+                    <li id="menu-item-1252" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1252"><a href="https://www.android-kiosk.com/remote-management/">Gallery</a></li>
+                    <li id="menu-item-1253" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1253"><a href="#features">Features</a></li>
+                    <li id="menu-item-1150" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1150"><a target="_blank" href="https://kioskbrowser.crisp.help">Help</a></li>
+                    <li id="menu-item-1263" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1263"><a href="https://www.android-kiosk.com/contact-us/">Contact</a></li>
+                </ul>
+                <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi mdi-menu"></i></a>
+            </div>
+        </nav>
+    </div>
+</header>
+<div id="main">
+    <div class="wrapper">
+        <section id="content">
+            <div id="form">
+                <div class="row">
+                    <div class="col s12 m5 l5">
+                        <div id="map"></div>
+                    </div>
+                    <div class="col s12 m4 l4">
+                        <div id="map2"></div>
+                    </div>
+                    <div class="col s12 m3 l3">
+                    <input  type="text" id="date_picker" class="datepicker" value="Date">
+                        <!--<div class="divider"></div>-->
+                    <input type="text" id ="time_picker" class="timepicker" value="Hour">
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="carousel">
+                                         <a class="carousel-item" href="#one!">
+                                         <div class="card blue-grey darken-1">
+                                         <div class="card-content white-text">
+                                         <span class="card-title">HOT SPOT</span>
+                                         <p id="hot_spot0">point to the hotspot and save the spot coordinate here!</p>
+                                         </div>
+                                         <div class="card-action">
+                                         </div>
+                                         </div>
+                                         </a>
+                                         <a class="carousel-item" href="#three!">
+                                         <div class="card blue-grey darken-1">
+                                         <div class="card-content white-text">
+                                         <span class="card-title">HOT SPOT</span>
+                                         <p id="hot_spot1">point to the hotspot and save the spot coordinate here!</p>
+                                         </div>
+                                         <div class="card-action">
+                                         </div>
+                                         </div>
+                                         </a>
+
+                                         <a class="carousel-item" href="#four!">
+                                         <div class="card blue-grey darken-1">
+                                         <div class="card-content white-text">
+                                         <span class="card-title">HOT SPOT</span>
+                                         <p id="hot_spot2">point to the hotspot and save the spot coordinate here!</p>
+                                         </div>
+                                         <div class="card-action">
+                                         </div>
+                                         </div>
+                                         </a>
+                                         <a class="carousel-item" href="#five!">
+                                         <div class="card blue-grey darken-1">
+                                         <div class="card-content white-text">
+                                         <span class="card-title">HOT SPOT</span>
+                                         <p id="hot_spot3">point to the hotspot and save the spot coordinate here!</p>
+                                         </div>
+                                         <div class="card-action">
+                                         </div>
+                                         </div>
+                                         </a>
+                                         </div>
+                        <a id="searchNearbyshop" class="waves-effect waves-light btn-small"><i class="material-icons">shop</i> </a>
+                        <a id="searchNearbybus" class="waves-effect waves-light btn-small"><i class="material-icons">directions_bus</i> </a>
+                        <a id="searchNearbysubway" class="waves-effect waves-light btn-small"><i class="material-icons">directions_subway</i> </a>
+                        <a id="searchNearbyrailway" class="waves-effect waves-light btn-small"><i class="material-icons">directions_railway</i> </a>
+                        <a id="searchNearbyschool" class="waves-effect waves-light btn-small"><i class="material-icons">school</i> </a>
+                        <a id="searchNearbywhatshot" class="waves-effect waves-light btn-small"><i class="material-icons">whatshot</i> </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<script>
+    var str1 = "2015-4-1";
+    var arr1 = str1.split("-");
+    var date1 = new Date(arr1[0],parseInt(arr1[1])-1,arr1[2]);
+    document.addEventListener('DOMContentLoaded', function() {
+        const Calender = document.querySelectorAll('.datepicker');
+        var myCalender = M.Datepicker.init(Calender, {
+            format:'dd/mm/yyyy',
+            showClearBtn:true,
+            i18n:{
+                clear:'清除',
+                done:'完成',
+                cancel:'取消'
+            },
+            defaultDate:date1,
+            setDefaultDate:true
+        });
+        var clocker = document.querySelectorAll('.timepicker');
+        var Clocker = M.Timepicker.init(clocker, {});
+        var hotSpot = document.querySelectorAll('.carousel');
+        var HotSpot = M.Carousel.init(hotSpot, {});
+    });
+</script>
+<script type="text/javascript" src="src/control.js"> </script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=1XjLLEhZhQNUzd93EjU5nOGQ"></script>
+<script type="text/javascript" src="js/mapv.js"></script>
+<script type="text/javascript" src="src/mymap.js"> </script>
+<script type="text/javascript" src="js/materialize.js"></script>
+
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col l12 s12">
+                <h5 class="white-text">城市交通数据可视化</h5>
+                <p class="grey-text text-lighten-4">使用步骤 STEP1.选择想要查询的日期与时间         STEP2. 点击热点进行保存，共可以保存五个热点           STEP3. 通过来搜索附近可能造成该热点的原因</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">标签
+        <div class="container">
+            © 2017 Copyright Traffic Visualization
+            <a class="grey-text text-lighten-4 right" href="#!">Github</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
